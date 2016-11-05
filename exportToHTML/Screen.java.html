@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>Screen.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(128,128,128); font-style: italic; }
+.s3 { color: rgb(0,0,255); }
+.s4 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+Screen.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">import </span><span class="s1">javax.swing.*; 
+</span><span class="s0">import </span><span class="s1">java.awt.*; 
+</span><span class="s0">import </span><span class="s1">java.awt.image.CropImageFilter; 
+</span><span class="s0">import </span><span class="s1">java.awt.image.FilteredImageSource; 
+</span><span class="s0">import </span><span class="s1">java.io.File; 
+ 
+</span><span class="s2">/** 
+ * Created by eugen on 9/14/2016. 
+ */</span><span class="s1"> 
+</span><span class="s0">public class </span><span class="s1">Screen </span><span class="s0">extends </span><span class="s1">JPanel </span><span class="s0">implements </span><span class="s1">Runnable{ 
+    </span><span class="s0">private </span><span class="s1">Thread thread = </span><span class="s0">new </span><span class="s1">Thread(</span><span class="s0">this</span><span class="s1">); 
+    </span><span class="s0">private static boolean </span><span class="s1">isFirst = </span><span class="s0">true</span><span class="s1">; 
+    </span><span class="s0">static int </span><span class="s1">myWidth, myHeight; 
+ 
+    </span><span class="s0">private static </span><span class="s1">Room room; 
+    </span><span class="s0">private static </span><span class="s1">Level level; 
+    </span><span class="s0">private static </span><span class="s1">Store store; 
+ 
+    </span><span class="s0">static </span><span class="s1">Point mse = </span><span class="s0">new </span><span class="s1">Point(</span><span class="s3">0</span><span class="s1">,</span><span class="s3">0</span><span class="s1">); 
+ 
+    </span><span class="s0">private static final int </span><span class="s1">lengthOfFile = </span><span class="s3">10</span><span class="s1">; 
+    </span><span class="s0">static </span><span class="s1">Image[] assets_ground = </span><span class="s0">new </span><span class="s1">Image[lengthOfFile]; 
+    </span><span class="s0">static </span><span class="s1">Image[] assets_air = </span><span class="s0">new </span><span class="s1">Image[lengthOfFile]; 
+ 
+ 
+ 
+    </span><span class="s0">public </span><span class="s1">Screen (){ 
+        thread.start(); 
+ 
+    } 
+ 
+ 
+ 
+    </span><span class="s0">private void </span><span class="s1">define(){ 
+ 
+        myWidth = getWidth(); 
+        myHeight = getHeight(); 
+ 
+        room = </span><span class="s0">new </span><span class="s1">Room(); 
+        level = </span><span class="s0">new </span><span class="s1">Level(); 
+        store = </span><span class="s0">new </span><span class="s1">Store(); 
+ 
+        </span><span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i =</span><span class="s3">0</span><span class="s1">; i &lt;lengthOfFile;i++){ 
+            assets_ground[i]=</span><span class="s0">new </span><span class="s1">ImageIcon(</span><span class="s4">&quot;res/assets_ground.png&quot;</span><span class="s1">).getImage(); 
+            assets_ground[i]=createImage( 
+                    </span><span class="s0">new </span><span class="s1">FilteredImageSource(assets_ground[i].getSource(), </span><span class="s0">new </span><span class="s1">CropImageFilter(</span><span class="s3">0</span><span class="s1">, </span><span class="s3">52</span><span class="s1">*i,</span><span class="s3">52</span><span class="s1">,</span><span class="s3">52</span><span class="s1">)) 
+            ); 
+ 
+            assets_air[i]=</span><span class="s0">new </span><span class="s1">ImageIcon(</span><span class="s4">&quot;res/assets_air.png&quot;</span><span class="s1">).getImage(); 
+            assets_air[i]=createImage( 
+                    </span><span class="s0">new </span><span class="s1">FilteredImageSource(assets_air[i].getSource(), </span><span class="s0">new </span><span class="s1">CropImageFilter(</span><span class="s3">0</span><span class="s1">, </span><span class="s3">52</span><span class="s1">*i,</span><span class="s3">52</span><span class="s1">,</span><span class="s3">52</span><span class="s1">)) 
+            ); 
+ 
+        } 
+ 
+        level.loadLevel(</span><span class="s0">new </span><span class="s1">File(</span><span class="s4">&quot;Level/level_1.zip&quot;</span><span class="s1">)); 
+ 
+    } 
+ 
+    </span><span class="s0">public static </span><span class="s1">Room getRoom(){ 
+        </span><span class="s0">return </span><span class="s1">room; 
+    } 
+ 
+    </span><span class="s0">public void </span><span class="s1">paintComponent (Graphics g){ 
+        </span><span class="s0">if</span><span class="s1">(isFirst){ 
+            define (); 
+ 
+            isFirst = </span><span class="s0">false</span><span class="s1">; 
+ 
+ 
+        } 
+        g.setColor(Color.pink); 
+        g.fillRect(</span><span class="s3">0</span><span class="s1">,</span><span class="s3">0</span><span class="s1">,getWidth(), getHeight()); 
+        g.setColor(Color.black); 
+        room.draw(g); </span><span class="s2">//drawing the room</span><span class="s1"> 
+        store.draw(g); </span><span class="s2">// drawing the store</span><span class="s1"> 
+        g.drawString(mse.getX() + </span><span class="s4">&quot;:&quot; </span><span class="s1">+ mse.getY(), </span><span class="s3">1</span><span class="s1">, </span><span class="s3">20</span><span class="s1">); 
+ 
+ 
+ 
+    } 
+ 
+    </span><span class="s0">private static int </span><span class="s1">fpsFrame = </span><span class="s3">0</span><span class="s1">, fps = </span><span class="s3">10000</span><span class="s1">; 
+ 
+ 
+    </span><span class="s0">public void </span><span class="s1">run() { 
+        </span><span class="s0">while </span><span class="s1">(</span><span class="s0">true</span><span class="s1">){ 
+            </span><span class="s0">if</span><span class="s1">(!isFirst){ 
+                room.physics(); 
+            } 
+ 
+ 
+            repaint(); 
+ 
+            </span><span class="s0">try</span><span class="s1">{ 
+                Thread.sleep(</span><span class="s3">1</span><span class="s1">); 
+            } </span><span class="s0">catch </span><span class="s1">(Exception e){ 
+                System.err.println(</span><span class="s4">&quot;Error: &quot; </span><span class="s1">+ e); 
+            } 
+        } 
+    } 
+ 
+ 
+} 
+</span></pre>
+</body>
+</html>
