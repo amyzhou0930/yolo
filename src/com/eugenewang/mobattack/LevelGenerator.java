@@ -1,3 +1,4 @@
+package com.eugenewang.mobattack;
 import java.io.PrintWriter;
 
 public class LevelGenerator {

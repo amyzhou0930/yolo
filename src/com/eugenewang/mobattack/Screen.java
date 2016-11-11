@@ -1,3 +1,4 @@
+package com.eugenewang.mobattack;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;

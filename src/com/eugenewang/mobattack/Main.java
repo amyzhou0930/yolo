@@ -1,3 +1,4 @@
+package com.eugenewang.mobattack;
 //part 2, 44:10
 import javax.swing.*;
 import java.awt.*;

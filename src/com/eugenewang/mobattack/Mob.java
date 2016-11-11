@@ -1,3 +1,4 @@
+package com.eugenewang.mobattack;
 import java.awt.*;
 
 public class Mob extends Rectangle{
