@@ -14,9 +14,11 @@ public class Mob extends Rectangle{
 	int thismobIndex = 0;
 	
 	long startTime = System.currentTimeMillis();
-	int upw = 8, dow = 2, fow = 6, baw =4;
+	final int upw = 8, dow = 2, fow = 6, baw =4;
 	int direction = 6;
 	int mobwalk = 0;
+	
+	int xC, yC;
 	
 	boolean inGame = false;
 	
@@ -53,6 +55,13 @@ public class Mob extends Rectangle{
 		if (System.currentTimeMillis()- startTime >10){
 			
 			Dtmove(direction);
+			mobwalk +=1;
+			
+			if (mobwalk == Screen.getRoom().blockSize){
+				if (direction == fow){
+					xC +=1;
+				}
+			}
 			
 			startTime = System.currentTimeMillis();
 		} 
@@ -76,6 +85,8 @@ public class Mob extends Rectangle{
 		default:
 			return;		
 		}
+		
+		
 	}
 	
 	
