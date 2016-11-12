@@ -115,30 +115,27 @@ public class Mob extends Rectangle{
 		
 		if ((xC+1)<blocks[yC].length ){
 			if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
-				inGame = false;
-				System.out.println(thismobIndex + ": " + inGame);				
+				inGame = remove();			
 			}
 		}
 				
 		
 	    if ((yC+1) < blocks.length){	    	
 	    	if (Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
-	    		inGame = false;
-	    		System.out.println(thismobIndex + ": " + inGame);
+	    		inGame = remove();
+	    		
 	    	}
 	    }
 	    
 		if (yC-1>=0){ 
 			if (Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
-				inGame = false;
-				System.out.println(thismobIndex + ": " + inGame);
+				inGame = remove();
 			}
 		}
 		
 		if ( xC-1>=0 ){
 			if (Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
-				inGame = false;
-				System.out.println(thismobIndex + ": " + inGame);
+				inGame = remove();
 			}
 		}
 		
@@ -156,7 +153,7 @@ public class Mob extends Rectangle{
 	}
 	
 	private boolean remove (){
-		
+		Screen.getStore().minusHealth(10);
 		return false;
 	}
 	

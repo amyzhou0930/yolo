@@ -9,6 +9,8 @@ public class Store {
     public Rectangle[] button = new Rectangle[shopWidth];
     int buttonSize = (int) 1.8 *Room.blockSize;
     int iconSize = 20;
+    static int coinage = 10, health =100;
+    
     
     Rectangle buttonHealth, buttonCoins;
     
@@ -34,8 +36,8 @@ public class Store {
         	filleRec(g, button[i]);
         	drawRec(g, Screen.assets_res[1], buttonCoins);
         	drawRec(g, Screen.assets_res[2], buttonHealth);
-        	g.drawString(Screen.coinage+"", buttonCoins.x + iconSize+10, buttonCoins.y+16);
-        	g.drawString(Screen.health+"", buttonHealth.x + iconSize+10, buttonHealth.y+16);
+        	g.drawString(coinage+"", buttonCoins.x + iconSize+10, buttonCoins.y+16);
+        	g.drawString(health+"", buttonHealth.x + iconSize+10, buttonHealth.y+16);
         	
         	if (button[i].contains(Screen.mse)){
         		drawRec(g, Screen.assets_res[0], button[i]);
@@ -49,5 +51,9 @@ public class Store {
     
     void drawRec(Graphics g, Image s, Rectangle rec){
     	g.drawImage(s, rec.x, rec.y, rec.width, rec.height, null);
+    }
+    
+    void minusHealth(int minus){
+    	this.health = health - minus;
     }
 }

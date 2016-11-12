@@ -14,7 +14,7 @@ public class Screen extends JPanel implements Runnable{
     private static boolean isFirst = true;
     private final int initial_wait = 0;
     static int myWidth, myHeight;
-    static int coinage = 10, health =100;
+    
     
     Int current = new Int(0);
     Int time = new Int (System.currentTimeMillis()+initial_wait);
@@ -90,6 +90,10 @@ public class Screen extends JPanel implements Runnable{
     public static Room getRoom(){
         return room;
     }
+    
+    public static Store getStore(){
+    	return store;
+    }
 
     public void paintComponent (Graphics g){
         if(isFirst){
@@ -143,7 +147,7 @@ public class Screen extends JPanel implements Runnable{
     void mobSpawnControl (Int time, Int curren, int limit){
     	int current = curren.getI();
     	if (current < limit){
-    		if (System.currentTimeMillis() - time.getL() > 1000) {
+    		if (System.currentTimeMillis() - time.getL() > 1) {
 
     	    	mobs[current].spawnMob();
     	    	//System.out.println("mobSpawned" + mobs[current].thismobIndex +" : "+ current);
