@@ -37,6 +37,8 @@ public class Mob extends Rectangle{
 		for (int y =0; y < blocks.length; y++){
 			if (blocks[y][0].groundID != Block.GROUND_GRASS){
 				setBounds(blocks[y][0].x, blocks[y][0].y, mobSize, mobSize);
+				xC = x;
+				yC = y;
 			}
 		}
 		
@@ -54,12 +56,16 @@ public class Mob extends Rectangle{
 	public void physics() {
 		if (System.currentTimeMillis()- startTime >10){
 			
-			Dtmove(direction);
+			Dtmove();
 			mobwalk +=1;
 			
 			if (mobwalk == Screen.getRoom().blockSize){
 				if (direction == fow){
-					xC +=1;
+					xC ++;
+				} else if (direction == upw){
+					yC ++;
+				} else if (direction == dow){
+					yC --;
 				}
 			}
 			
@@ -67,7 +73,7 @@ public class Mob extends Rectangle{
 		} 
 	}
 	
-	public void Dtmove (int direction){
+	public void Dtmove (){
 		mobwalk++;
 		switch (direction){
 		case 4: 
