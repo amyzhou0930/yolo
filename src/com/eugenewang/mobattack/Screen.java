@@ -37,6 +37,7 @@ public class Screen extends JPanel implements Runnable{
     	this.addMouseListener (new KeyHandel());
         this.addMouseMotionListener (new KeyHandel());
         
+        
     	thread.start();
 
     }
