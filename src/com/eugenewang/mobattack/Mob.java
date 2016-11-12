@@ -59,6 +59,7 @@ public class Mob extends Rectangle{
 			Dtmove();
 			mobwalk +=1;
 			
+			//Block walk finished
 			if (mobwalk == Screen.getRoom().blockSize){
 				if (direction == fow){
 					xC ++;
@@ -66,7 +67,24 @@ public class Mob extends Rectangle{
 					yC ++;
 				} else if (direction == dow){
 					yC --;
+				} else{
+					xC --; 			//assume backward motion
 				}
+				
+				//Next block detect
+				
+				if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
+					direction = fow;
+				} else if (Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
+					direction = dow;
+				} else if (Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
+					direction = upw;
+				} else {
+					direction = baw;
+				}
+				
+				
+				
 			}
 			
 			startTime = System.currentTimeMillis();
