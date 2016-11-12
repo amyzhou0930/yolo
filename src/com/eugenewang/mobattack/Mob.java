@@ -52,29 +52,27 @@ public class Mob extends Rectangle{
 	}
 
 	public void physics() {
-		if (System.currentTimeMillis()- startTime >1){
-			
-			move1block();
-			
-			System.out.print(mobwalk + " ");
-			//Block walk finished
-			if (mobwalk >= Screen.getRoom().blockSize){
+		if (inGame){
+			if (System.currentTimeMillis()- startTime >1){
 				
-				move2cross();
+				move1block();
 				
-				System.out.println("mob" +thismobIndex + "xC: " + xC + "yC: "+ yC);
-				//Next block detect
-				
-				
-				
-				move3decide();
-				
-				mobwalk = 0;
-				
-			}
-			
-			startTime = System.currentTimeMillis();
-		} 
+				//System.out.print(mobwalk + " ");
+				//Block walk finished
+				if (mobwalk >= Screen.getRoom().blockSize){
+					
+					move2cross();
+					
+					//System.out.println("mob" +thismobIndex + "xC: " + xC + "yC: "+ yC);
+					//Next block detect
+									
+					move3decide();
+					
+					mobwalk = 0;				
+				}
+				startTime = System.currentTimeMillis();
+			} 
+		}
 	}
 	
 	public void move1block (){
@@ -113,15 +111,38 @@ public class Mob extends Rectangle{
 	}
 	
 	private void move3decide(){
-		if ((xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
-			inGame = false;
-		} else if ((yC+1) < blocks.length && Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
-			inGame = false;
-		} else if (yC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
-			inGame = false;
-		} else if ( xC-1>=0 && Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
-			inGame = false;
-		} 
+		
+		
+		if ((xC+1)<blocks[yC].length ){
+			if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
+				inGame = false;
+				System.out.println(thismobIndex + ": " + inGame);				
+			}
+		}
+				
+		
+	    if ((yC+1) < blocks.length){	    	
+	    	if (Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
+	    		inGame = false;
+	    		System.out.println(thismobIndex + ": " + inGame);
+	    	}
+	    }
+	    
+		if (yC-1>=0){ 
+			if (Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
+				inGame = false;
+				System.out.println(thismobIndex + ": " + inGame);
+			}
+		}
+		
+		if ( xC-1>=0 ){
+			if (Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
+				inGame = false;
+				System.out.println(thismobIndex + ": " + inGame);
+			}
+		}
+		
+		
 		
 		if (direction != baw && (xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
 			direction = fow;
@@ -132,6 +153,11 @@ public class Mob extends Rectangle{
 		} else if (direction != fow && xC-1>=0 && Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_ROAD){
 			direction = baw;
 		} 
+	}
+	
+	private boolean remove (){
+		
+		return false;
 	}
 	
 	
