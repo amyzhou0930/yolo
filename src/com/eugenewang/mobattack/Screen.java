@@ -79,7 +79,7 @@ public class Screen extends JPanel implements Runnable{
 
         }
 
-        level.loadLevel(new File("Level/level_1.zip"));
+        level.loadLevel(new File("Level/level_3.zip"));
         
         for (int i = 0; i < mobs.length; i++){
         	mobs[i] = new Mob(0);        	
