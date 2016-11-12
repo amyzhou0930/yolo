@@ -18,6 +18,7 @@ public class Block extends Rectangle{
     public static final int AIR_AIR = 0;
     public static final int MOB_AIR = -1;
     public static final int MOB_GREENEY = 0;
+    public static final int AIR_TRASHCAN = 9;
 
 
     public Block (int x, int y, int width, int height, int groundID, int airID){

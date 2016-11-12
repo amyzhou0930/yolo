@@ -16,7 +16,10 @@ public class KeyHandel extends MouseAdapter implements MouseMotionListener, Mous
     }
 
     public void mousePressed(MouseEvent e) {
-
+    	
+    	//if (inGame)
+    	Screen.getStore().click(e.getButton());
+    	System.out.println(e.getButton());
     }
 
     public void mouseReleased(MouseEvent e) {
