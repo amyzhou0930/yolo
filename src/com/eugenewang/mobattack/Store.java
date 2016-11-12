@@ -10,6 +10,8 @@ public class Store {
     int buttonSize = (int) 1.8 *Room.blockSize;
     int iconSize = 20;
     static int coinage = 10, health =100;
+    static int buttonID[] = new int[shopWidth];
+    
     
     
     Rectangle buttonHealth, buttonCoins;
