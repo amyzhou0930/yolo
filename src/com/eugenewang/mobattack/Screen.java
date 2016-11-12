@@ -148,7 +148,7 @@ public class Screen extends JPanel implements Runnable{
     void mobSpawnControl (Int time, Int curren, int limit){
     	int current = curren.getI();
     	if (current < limit){
-    		if (System.currentTimeMillis() - time.getL() > 1) {
+    		if (System.currentTimeMillis() - time.getL() > 100) {
 
     	    	mobs[current].spawnMob();
     	    	//System.out.println("mobSpawned" + mobs[current].thismobIndex +" : "+ current);
