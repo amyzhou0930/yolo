@@ -25,8 +25,8 @@ public class Room {
         
 
 
-        System.out.println("myWidth "+worldWidth);
-        System.out.println("myHeigh "+worldHeight);
+        //System.out.println("myWidth "+worldWidth);
+        //System.out.println("myHeigh "+worldHeight);
 
         blocks = new Block[worldHeight][worldWidth];
 

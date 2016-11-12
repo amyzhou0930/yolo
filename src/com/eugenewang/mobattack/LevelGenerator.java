@@ -95,9 +95,9 @@ public class LevelGenerator {
 		try{
 		    PrintWriter writer = new PrintWriter("C:/Users/eugene/Desktop/data.txt", "UTF-8");
 		    
-		    for (int i = 0;  i< map.length; i ++){
-				for (int j = 0; j < map[i].length; j ++){
-					writer.print(map[i][j]+ " ");
+		    for (int i = 0;  i< map[0].length; i ++){
+				for (int j = 0; j < map.length; j ++){
+					writer.print(map[j][i]+ " ");
 				}
 				writer.println();
 			}

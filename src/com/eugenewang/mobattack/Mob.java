@@ -15,7 +15,8 @@ public class Mob extends Rectangle{
 	
 	long startTime = System.currentTimeMillis();
 	final int upw = 8, dow = 2, fow = 6, baw =4;
-	int direction = 6;
+	int direction = 6, xdr =  0;
+	
 	int mobwalk = 0;
 	
 	int xC, yC;
@@ -44,7 +45,7 @@ public class Mob extends Rectangle{
 		
 		
 		inGame = true;
-		System.out.println("new Mob Spawned: " + thismobIndex);
+		//System.out.println("new Mob Spawned: " + thismobIndex);
 	}
 	
 	public void draw (Graphics g){
@@ -64,13 +65,14 @@ public class Mob extends Rectangle{
 				if (direction == fow){
 					xC ++;
 				} else if (direction == upw){
-					yC ++;
-				} else if (direction == dow){
 					yC --;
+				} else if (direction == dow){
+					yC ++;
 				} else{
 					xC --; 			//assume backward motion
 				}
 				
+				System.out.println("mob" +thismobIndex + "xC: " + xC + "yC: "+ yC);
 				//Next block detect
 				
 				if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
@@ -83,7 +85,7 @@ public class Mob extends Rectangle{
 					direction = baw;
 				}
 				
-				
+				mobwalk = 0;
 				
 			}
 			

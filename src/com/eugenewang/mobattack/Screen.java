@@ -12,7 +12,7 @@ public class Screen extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
-    private final int initial_wait = 5000;
+    private final int initial_wait = 0;
     static int myWidth, myHeight;
     static int coinage = 10, health =100;
     
@@ -146,7 +146,7 @@ public class Screen extends JPanel implements Runnable{
     		if (System.currentTimeMillis() - time.getL() > 1000) {
 
     	    	mobs[current].spawnMob();
-    	    	System.out.println("mobSpawned" + mobs[current].thismobIndex +" : "+ current);
+    	    	//System.out.println("mobSpawned" + mobs[current].thismobIndex +" : "+ current);
     	    	
     	    	curren.A();
     	    	time.setL(System.currentTimeMillis());
