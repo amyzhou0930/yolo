@@ -7,7 +7,7 @@ import java.awt.*;
 public class Room {
     public static int worldWidth = 10;
     public static int worldHeight = 10;
-    public static int blockSize = 25;
+    public static int blockSize;
 
     Screen screen;
 

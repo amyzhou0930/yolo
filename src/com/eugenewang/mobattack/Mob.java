@@ -2,9 +2,6 @@ package com.eugenewang.mobattack;
 import java.awt.*;
 
 public class Mob extends Rectangle{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	Block [][] blocks = Screen.getRoom().blocks;
@@ -57,33 +54,20 @@ public class Mob extends Rectangle{
 	public void physics() {
 		if (System.currentTimeMillis()- startTime >10){
 			
-			Dtmove();
-			mobwalk +=1;
+			move1block();
 			
+			System.out.print(mobwalk + " ");
 			//Block walk finished
-			if (mobwalk == Screen.getRoom().blockSize){
-				if (direction == fow){
-					xC ++;
-				} else if (direction == upw){
-					yC --;
-				} else if (direction == dow){
-					yC ++;
-				} else{
-					xC --; 			//assume backward motion
-				}
+			if (mobwalk >= Screen.getRoom().blockSize){
+				
+				move2cross();
 				
 				System.out.println("mob" +thismobIndex + "xC: " + xC + "yC: "+ yC);
 				//Next block detect
 				
-				if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
-					direction = fow;
-				} else if (Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
-					direction = dow;
-				} else if (Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
-					direction = upw;
-				} else {
-					direction = baw;
-				}
+				
+				
+				move3decide();
 				
 				mobwalk = 0;
 				
@@ -93,7 +77,7 @@ public class Mob extends Rectangle{
 		} 
 	}
 	
-	public void Dtmove (){
+	public void move1block (){
 		mobwalk++;
 		switch (direction){
 		case 4: 
@@ -113,6 +97,33 @@ public class Mob extends Rectangle{
 		}
 		
 		
+	}
+	
+	private void move2cross(){
+		if (direction == fow){
+			xC ++;
+		} else if (direction == upw){
+			yC --;
+		} else if (direction == dow){
+			yC ++;
+		} else{
+			xC --; 			//assume backward motion
+		}
+		
+	}
+	
+	private void move3decide(){
+		if (direction != baw && (xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
+			direction = fow;
+		} else if (direction != upw && (yC+1) < blocks.length && Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
+			direction = dow;
+		} else if (direction != dow && yC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
+			direction = upw;
+		} else if (direction != fow && xC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID == Block.GROUND_ROAD){
+			direction = baw;
+		} else {
+			return;
+		}
 	}
 	
 	
