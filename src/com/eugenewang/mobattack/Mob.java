@@ -57,9 +57,10 @@ public class Mob extends Rectangle{
 				
 				move1block();
 				
+				Screen.getRoom();
 				//System.out.print(mobwalk + " ");
 				//Block walk finished
-				if (mobwalk >= Screen.getRoom().blockSize){
+				if (mobwalk >= Room.blockSize){
 					
 					move2cross();
 					

@@ -29,17 +29,19 @@ public class Store {
     	if (mouseButtonClick == RIGHT_CLICK){
     		for (int i = 0; i < button.length; i++){
     			if (button[i].contains(Screen.mse)){
-    				
-    				heldID = buttonID[i];
-    				holds = true;
+    					heldID = buttonID[i];
+        				holds = true; 				    				
     			}
     		}
+    	} else if (mouseButtonClick == LEFT_CLICK ){
+    		holds = false;
     	}
     }
 
     public void define (){
         for (int i = 0; i < button.length; i++){
             button[i] = new Rectangle(Screen.myWidth/shopWidth+i*(2+buttonSize), Room.worldHeight*Room.blockSize, buttonSize, buttonSize);
+            buttonID[i] = i;
         }
         
         Rectangle rectangle = button[button.length-1];
@@ -81,6 +83,6 @@ public class Store {
     }
     
     void minusHealth(int minus){
-    	this.health = health - minus;
+    	health = health - minus;
     }
 }

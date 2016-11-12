@@ -67,7 +67,7 @@ public class Level {
 
 
         } catch (Exception e){
-            System.out.println("Fucked + " + e);
+            System.out.println("LoadingLevel + " + e);
         }
     }
 }
