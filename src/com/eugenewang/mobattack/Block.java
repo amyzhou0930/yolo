@@ -13,6 +13,7 @@ public class Block extends Rectangle{
 
     public static final int GROUND_GRASS = 0;
     public static final int GROUND_ROAD = 1;
+    public static final int GROUND_END = 9;
     
     public static final int AIR_AIR = 0;
     public static final int MOB_AIR = -1;

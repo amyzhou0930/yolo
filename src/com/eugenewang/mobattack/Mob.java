@@ -52,7 +52,7 @@ public class Mob extends Rectangle{
 	}
 
 	public void physics() {
-		if (System.currentTimeMillis()- startTime >10){
+		if (System.currentTimeMillis()- startTime >1){
 			
 			move1block();
 			
@@ -113,18 +113,28 @@ public class Mob extends Rectangle{
 	}
 	
 	private void move3decide(){
+		if ((xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
+			inGame = false;
+		} else if ((yC+1) < blocks.length && Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
+			inGame = false;
+		} else if (yC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
+			inGame = false;
+		} else if ( xC-1>=0 && Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
+			inGame = false;
+		} 
+		
 		if (direction != baw && (xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
 			direction = fow;
 		} else if (direction != upw && (yC+1) < blocks.length && Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
 			direction = dow;
 		} else if (direction != dow && yC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
 			direction = upw;
-		} else if (direction != fow && xC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID == Block.GROUND_ROAD){
+		} else if (direction != fow && xC-1>=0 && Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_ROAD){
 			direction = baw;
-		} else {
-			return;
-		}
+		} 
 	}
+	
+	
 	
 	
 }
