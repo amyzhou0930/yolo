@@ -13,8 +13,10 @@ public class Room {
 
     public Block[][] blocks;
 
-    public Room(){
+    public Room(Screen screen){
         define();
+        
+        this.screen = screen;
     }
 
 
@@ -64,7 +66,11 @@ public class Room {
     }
 
     void physics(){
-
+    	for (int y = 0; y < blocks.length ; y++){
+    		for (int x = 0; x < blocks[y].length ; x++){
+    			blocks[y][x].physic(screen);
+    		}
+    	}
     }
 
 

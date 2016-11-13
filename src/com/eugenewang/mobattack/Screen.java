@@ -26,7 +26,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private Room room;
     private Level level;
     private  Store store;
-    private  Mob mobs []; 
+    Mob mobs []; 
 
     static Point mse = new Point(0,0);
 
@@ -52,7 +52,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
         myWidth = getWidth();
         myHeight = getHeight();
 
-        room = new Room();
+        room = new Room(this);
         level = new Level(room.blocks);
         store = new Store(room.blocks);
         mobs = new Mob[20];

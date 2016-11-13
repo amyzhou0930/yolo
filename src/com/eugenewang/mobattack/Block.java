@@ -11,6 +11,8 @@ public class Block extends Rectangle{
 	int groundID;
     int airID;
     int towerSquareSize = 100;
+    int shotMob = 0;
+    boolean shoting = false;
 
     static final int GROUND_GRASS = 0;
     static final int GROUND_ROAD = 1;
@@ -30,6 +32,18 @@ public class Block extends Rectangle{
         towerSquare = new Rectangle (x - towerSquareSize/2, y - towerSquareSize/2, width  + towerSquareSize, height + towerSquareSize );
         this.groundID = groundID;
         this.airID = airID;
+    }
+    
+    public void physic(Screen screen){
+    	if (this.airID > Block.AIR_AIR){
+    		for (int y = 0; y <screen.mobs.length; y++){
+    			if (screen.mobs[y].inGame){
+    				if (towerSquare.contains(screen.mobs[y])){
+    					System.out.println("mob " + y + "shooting Range");
+    				}
+    			}
+    		}
+    	}
     }
 
     public void draw(Graphics g){
