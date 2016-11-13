@@ -56,7 +56,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
         room = new Room(this);
         level = new Level(room.blocks);
         store = new Store(room.blocks);
-        mobs = new Mob[20];
+        mobs = new Mob[2000];
         
         
         
