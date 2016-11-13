@@ -21,6 +21,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     
     Int current = new Int(0);
     Int time = new Int (System.currentTimeMillis()+initial_wait);
+    boolean is_alive = true;
 
     private Room room;
     private Level level;
@@ -102,6 +103,8 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
             define ();
             isFirst = false;
         }
+        
+        
         g.setColor(Color.pink);
         g.fillRect(0,0,getWidth(), getHeight());
         g.setColor(Color.black);
@@ -116,6 +119,14 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
         	}
         }
         g.drawString(mse.getX() + ":" + mse.getY(), 1, 20);
+        if (!is_alive){
+        	g.setColor(new Color (255, 255, 255, 160));
+        	g.fillRect(0, 0, 1000, 1000);
+        	g.setColor(Color.RED);
+        	g.setFont(new Font("Verdana", Font.BOLD, 120));
+        	g.drawString("YOU", 40, 230);
+        	g.drawString("  SUCK!!!", 40, 380);
+        }
     }
 
     //private static int fpsFrame = 0, fps = 10000;
@@ -124,12 +135,15 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     
     public void run() {
         while (true){
-            if(!isFirst){
+            if(!isFirst && is_alive){
                 room.physics();
                 mobSpawnControl(time, current, mobs.length);
+                
                 for (int i =0; i < current.getI(); i++ ){
                 	mobs[i].physics();
                 }
+                if (store.health <=0 )
+                	is_alive = false;
             }            
             repaint();
         }

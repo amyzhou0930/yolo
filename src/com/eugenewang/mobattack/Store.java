@@ -8,15 +8,15 @@ public class Store  {
 	
 	Screen screen;
 	
-    public static int shopWidth = 10;
-    public Rectangle[] button = new Rectangle[shopWidth];
-    public int []price = new int [] {100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
+    int shopWidth = 10;
+    Rectangle[] button = new Rectangle[shopWidth];
+    int []price = new int [] {100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
     int buttonSize = (int) 1.8 *Room.blockSize;
     int iconSize = 20;
     int heldID = -1;
     boolean holds = false;
-    static int coinage = 10, health =100;
-    static int buttonID[] = new int[shopWidth];
+    int coinage = 10, health =100;
+    int buttonID[] = new int[shopWidth];
     
     final int RIGHT_CLICK = 3, LEFT_CLICK = 1;
     

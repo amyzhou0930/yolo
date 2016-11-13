@@ -10,8 +10,6 @@ public class Level {
 	final int rows = 16, column = 10, start = 5;
 	final double difficulty = 0.2;
 	
-	
-	
 	public Level(Block [][] blocks){
 		this.blocks = blocks;
 	}
@@ -51,21 +49,11 @@ public class Level {
 
                 for (int y = 0; y <blocks.length;y++){
                     for (int x = 0; x <blocks[y].length;x++){
-
-                        blocks[y][x].airID = loadScanner.nextInt();
-                        //System.out.print (Screen.getRoom().blocks[y][x].airID);		//debug air
-
+                        blocks[y][x].airID = loadScanner.nextInt();                       
                     }
-                    //System.out.println("");
                 }
             }
             loadScanner.close();
-
-
-
-
-
-
         } catch (Exception e){
             System.out.println("LoadingLevel + " + e);
         }
