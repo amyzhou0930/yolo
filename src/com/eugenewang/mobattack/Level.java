@@ -13,8 +13,6 @@ public class Level {
 	
 	public Level(Screen screen){
 		this.screen = screen;
-		
-		
 	}
 	
 	public void nexLevel(int level){

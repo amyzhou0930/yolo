@@ -3,12 +3,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JPanel;
+
 /**
  * Created by eugen on 9/21/2016.
  */
-public class Store implements MouseListener {
+public class Store extends JPanel implements MouseListener {
+	
     public static int shopWidth = 10;
     public Rectangle[] button = new Rectangle[shopWidth];
+    public int []price = new int [] {100, 100, 100, 100, 100, 100, 100, 100, 100, 100};
     int buttonSize = (int) 1.8 *Room.blockSize;
     int iconSize = 20;
     int heldID = -1;
@@ -24,6 +28,9 @@ public class Store implements MouseListener {
     
 
     public Store (){
+    	this.addMouseListener(this);
+    	
+    	
         define();
     }
     
@@ -41,6 +48,7 @@ public class Store implements MouseListener {
     }
 
     public void define (){
+    	
         for (int i = 0; i < button.length; i++){
             button[i] = new Rectangle(Screen.myWidth/shopWidth+i*(2+buttonSize), Room.worldHeight*Room.blockSize, buttonSize, buttonSize);
             buttonID[i] = i;
@@ -57,12 +65,11 @@ public class Store implements MouseListener {
         	g.setColor(Color.BLACK);
         	filleRec(g, button[i]);
         	drawRec(g, Screen.assets_air[i], button[i]);
+        	g.drawString(""+price[i], button[i].x, button[i].y+10);
         	
         	if (button[i].contains(Screen.mse)){
         		drawRec(g, Screen.assets_res[0], button[i]);
             }
-        	
-        	
         }
         
         drawRec(g, Screen.assets_res[1], buttonCoins);
@@ -70,10 +77,9 @@ public class Store implements MouseListener {
     	g.drawString(coinage+"", buttonCoins.x + iconSize+10, buttonCoins.y+16);
     	g.drawString(health+"", buttonHealth.x + iconSize+10, buttonHealth.y+16);
     	
-    	if (holds){
+    	if (holds)
     		drawRec(g, Screen.assets_air[heldID], new Rectangle(Screen.mse.x-25, Screen.mse.y-25, 50, 50));
-    	}
-    	
+    	    	
     }
     
     void filleRec(Graphics g, Rectangle rec){
@@ -89,31 +95,32 @@ public class Store implements MouseListener {
     }
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		click(arg0.getButton());
+	public void mousePressed(MouseEvent e) {
+		this.click(e.getButton());
+		System.out.println(e);
 		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
+	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
