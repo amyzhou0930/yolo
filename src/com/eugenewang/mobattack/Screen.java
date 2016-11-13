@@ -1,6 +1,8 @@
 package com.eugenewang.mobattack;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.io.File;
@@ -8,7 +10,7 @@ import java.io.File;
 /**
  * Created by eugen on 9/14/2016.
  */
-public class Screen extends JPanel implements Runnable{
+public class Screen extends JPanel implements Runnable, MouseMotionListener{
 	private static final long serialVersionUID = 1L;
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
@@ -19,10 +21,10 @@ public class Screen extends JPanel implements Runnable{
     Int current = new Int(0);
     Int time = new Int (System.currentTimeMillis()+initial_wait);
 
-    private static Room room;
-    private static Level level;
-    private static Store store;
-    private static Mob mobs []; 
+    private Room room;
+    private Level level;
+    private  Store store;
+    private  Mob mobs []; 
 
     static Point mse = new Point(0,0);
 
@@ -34,8 +36,8 @@ public class Screen extends JPanel implements Runnable{
 
 
     public Screen (JFrame frame){
-    	this.addMouseListener (new KeyHandel());
-        this.addMouseMotionListener (new KeyHandel());
+    	
+        this.addMouseMotionListener (this);
         
         
     	thread.start();
@@ -50,7 +52,7 @@ public class Screen extends JPanel implements Runnable{
         myHeight = getHeight();
 
         room = new Room();
-        level = new Level();
+        level = new Level(this);
         store = new Store();
         mobs = new Mob[20];
         
@@ -83,16 +85,16 @@ public class Screen extends JPanel implements Runnable{
         level.loadLevel(new File("Level/level_3.zip"));
         
         for (int i = 0; i < mobs.length; i++){
-        	mobs[i] = new Mob(0);        	
+        	mobs[i] = new Mob(this, 0);        	
         }
 
     }
 
-    public static Room getRoom(){
+    public  Room getRoom(){
         return room;
     }
     
-    public static Store getStore(){
+    public  Store getStore(){
     	return store;
     }
 
@@ -114,12 +116,7 @@ public class Screen extends JPanel implements Runnable{
         		mobs[i].draw(g);
         	}
         }
-        
-        
         g.drawString(mse.getX() + ":" + mse.getY(), 1, 20);
-
-
-
     }
 
     //private static int fpsFrame = 0, fps = 10000;
@@ -134,14 +131,8 @@ public class Screen extends JPanel implements Runnable{
                 for (int i =0; i < current.getI(); i++ ){
                 	mobs[i].physics();
                 }
-                
-            }
-            
-            
-            	
+            }            
             repaint();
-
-            
         }
     }
     
@@ -158,6 +149,8 @@ public class Screen extends JPanel implements Runnable{
         	} else{}	    	
     	}    	
     }
+    
+    
     
     
     
@@ -210,6 +203,23 @@ public class Screen extends JPanel implements Runnable{
 		
 		
 	}
+
+
+
+
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		mse = new Point(e.getX() + (FRAME.dimension.width - Screen.myWidth)/2 , e.getY() + (FRAME.dimension.height -  Screen.myHeight -FRAME.dimension.width+Screen.myWidth)/2);
+		
+	}
+
+
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+        mse = new Point(e.getX() + (FRAME.dimension.width - Screen.myWidth)/2 , e.getY() + (FRAME.dimension.height -  Screen.myHeight -FRAME.dimension.width+Screen.myWidth)/2);
+    }
 	
 
 }

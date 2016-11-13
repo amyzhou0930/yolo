@@ -9,24 +9,26 @@ import java.util.Date;
 /**
  * Created by eugen on 9/14/2016.
  */
-public class Main extends JFrame{
+public class FRAME extends JFrame{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static Dimension dimension = new Dimension(806, 600);
     private String title = "Haha";
+    public Screen screen;
+    static FRAME frame;
 
     public static void main (String args []){
 
         //System.out.println ("hello");
-        new Main();
+        frame = new FRAME();
 
 
 
     }
 
-    public Main (){
+    public FRAME (){
 
 
         super();
@@ -52,7 +54,7 @@ public class Main extends JFrame{
     private void initialization (){
         this.setLayout(new GridLayout(1,1,0,0));
 
-        Screen screen = new Screen(this);
+        screen = new Screen(this);
         add(screen);
 
 

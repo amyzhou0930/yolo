@@ -1,10 +1,12 @@
 package com.eugenewang.mobattack;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Created by eugen on 9/21/2016.
  */
-public class Store {
+public class Store implements MouseListener {
     public static int shopWidth = 10;
     public Rectangle[] button = new Rectangle[shopWidth];
     int buttonSize = (int) 1.8 *Room.blockSize;
@@ -85,4 +87,34 @@ public class Store {
     void minusHealth(int minus){
     	health = health - minus;
     }
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		click(arg0.getButton());
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

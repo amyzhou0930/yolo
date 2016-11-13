@@ -4,7 +4,9 @@ import java.awt.*;
 public class Mob extends Rectangle{
 	private static final long serialVersionUID = 1L;
 	
-	Block [][] blocks = Screen.getRoom().blocks;
+	Screen screen;
+	
+	Block [][] blocks;
 	int mobSize = Room.blockSize ;
 	int mobID = Block.MOB_AIR;
 	static int mobIndex = 0;
@@ -21,12 +23,14 @@ public class Mob extends Rectangle{
 	boolean inGame = false;
 	
 	
-	public Mob(){
+	public Mob(Screen screen){
 		
 		
 	}
 	
-	public Mob(int mobID){
+	public Mob(Screen screen, int mobID){
+		this.screen = screen;
+		blocks = screen.getRoom().blocks;
 		this.thismobIndex= ++mobIndex;
 		this.mobID = mobID; 
 	}
@@ -57,7 +61,7 @@ public class Mob extends Rectangle{
 				
 				move1block();
 				
-				Screen.getRoom();
+				//Screen.getRoom();
 				//System.out.print(mobwalk + " ");
 				//Block walk finished
 				if (mobwalk >= Room.blockSize){
@@ -115,46 +119,46 @@ public class Mob extends Rectangle{
 		
 		
 		if ((xC+1)<blocks[yC].length ){
-			if (Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
+			if (screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
 				inGame = remove();			
 			}
 		}
 				
 		
 	    if ((yC+1) < blocks.length){	    	
-	    	if (Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
+	    	if (screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
 	    		inGame = remove();
 	    		
 	    	}
 	    }
 	    
 		if (yC-1>=0){ 
-			if (Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
+			if (screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
 				inGame = remove();
 			}
 		}
 		
 		if ( xC-1>=0 ){
-			if (Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
+			if (screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
 				inGame = remove();
 			}
 		}
 		
 		
 		
-		if (direction != baw && (xC+1)<blocks[yC].length && Screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
+		if (direction != baw && (xC+1)<blocks[yC].length && screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_ROAD){
 			direction = fow;
-		} else if (direction != upw && (yC+1) < blocks.length && Screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
+		} else if (direction != upw && (yC+1) < blocks.length && screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_ROAD){
 			direction = dow;
-		} else if (direction != dow && yC-1>=0 && Screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
+		} else if (direction != dow && yC-1>=0 && screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_ROAD){
 			direction = upw;
-		} else if (direction != fow && xC-1>=0 && Screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_ROAD){
+		} else if (direction != fow && xC-1>=0 && screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_ROAD){
 			direction = baw;
 		} 
 	}
 	
 	private boolean remove (){
-		Screen.getStore().minusHealth(10);
+		screen.getStore().minusHealth(10);
 		return false;
 	}
 	
