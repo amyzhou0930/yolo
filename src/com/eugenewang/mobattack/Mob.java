@@ -67,10 +67,6 @@ public class Mob extends Rectangle{
 				if (mobwalk >= Room.blockSize){
 					
 					move2cross();
-					
-					//System.out.println("mob" +thismobIndex + "xC: " + xC + "yC: "+ yC);
-					//Next block detect
-									
 					move3decide();
 					
 					mobwalk = 0;				
