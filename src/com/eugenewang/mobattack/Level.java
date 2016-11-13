@@ -6,13 +6,14 @@ import java.util.Scanner;
  * Created by eugen on 9/21/2016.
  */
 public class Level {
-	Screen screen;
+	Block [][]blocks;
 	final int rows = 16, column = 10, start = 5;
 	final double difficulty = 0.2;
 	
 	
-	public Level(Screen screen){
-		this.screen = screen;
+	
+	public Level(Block [][] blocks){
+		this.blocks = blocks;
 	}
 	
 	public void nexLevel(int level){
@@ -38,9 +39,9 @@ public class Level {
             Scanner loadScanner = new Scanner(loadPath);
 
             while (loadScanner.hasNext()){
-                for (int y = 0; y <screen.getRoom().blocks.length;y++){
-                    for (int x = 0; x <screen.getRoom().blocks[y].length;x++){
-                        screen.getRoom().blocks[y][x].groundID = loadScanner.nextInt();
+                for (int y = 0; y <blocks.length;y++){
+                    for (int x = 0; x <blocks[y].length;x++){
+                        blocks[y][x].groundID = loadScanner.nextInt();
                         //System.out.print (Screen.getRoom().blocks[y][x].groundID); 		//debug ground
                     }
                     //System.out.println("");			
@@ -48,10 +49,10 @@ public class Level {
 
                 //System.out.println("\n\n");
 
-                for (int y = 0; y <screen.getRoom().blocks.length;y++){
-                    for (int x = 0; x <screen.getRoom().blocks[y].length;x++){
+                for (int y = 0; y <blocks.length;y++){
+                    for (int x = 0; x <blocks[y].length;x++){
 
-                        screen.getRoom().blocks[y][x].airID = loadScanner.nextInt();
+                        blocks[y][x].airID = loadScanner.nextInt();
                         //System.out.print (Screen.getRoom().blocks[y][x].airID);		//debug air
 
                     }

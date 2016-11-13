@@ -52,7 +52,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
         myHeight = getHeight();
 
         room = new Room();
-        level = new Level(this);
+        level = new Level(room.blocks);
         store = new Store();
         mobs = new Mob[20];
         
