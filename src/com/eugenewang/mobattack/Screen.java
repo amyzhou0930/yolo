@@ -2,6 +2,7 @@ package com.eugenewang.mobattack;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
@@ -10,7 +11,7 @@ import java.io.File;
 /**
  * Created by eugen on 9/14/2016.
  */
-public class Screen extends JPanel implements Runnable, MouseMotionListener{
+public class Screen extends JPanel implements Runnable, MouseMotionListener, MouseListener{
 	private static final long serialVersionUID = 1L;
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
@@ -38,7 +39,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener{
     public Screen (JFrame frame){
     	
         this.addMouseMotionListener (this);
-        
+        this.addMouseListener (this);
     	thread.start();
 
     }
@@ -86,7 +87,6 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener{
         for (int i = 0; i < mobs.length; i++){
         	mobs[i] = new Mob(this, 0);        	
         }
-
     }
 
     public  Room getRoom(){
@@ -219,6 +219,45 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener{
 	public void mouseMoved(MouseEvent e) {
         mse = new Point(e.getX() + (FRAME.dimension.width - Screen.myWidth)/2 , e.getY() + (FRAME.dimension.height -  Screen.myHeight -FRAME.dimension.width+Screen.myWidth)/2);
     }
+
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		store.click(e.getButton());
+		
+	}
+
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		store.click(e.getButton());		
+	}
+
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

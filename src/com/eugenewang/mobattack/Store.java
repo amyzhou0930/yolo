@@ -1,14 +1,12 @@
 package com.eugenewang.mobattack;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
-import javax.swing.JPanel;
 
 /**
  * Created by eugen on 9/21/2016.
  */
-public class Store extends JPanel implements MouseListener {
+public class Store  {
+	
+	Screen screen;
 	
     public static int shopWidth = 10;
     public Rectangle[] button = new Rectangle[shopWidth];
@@ -28,10 +26,9 @@ public class Store extends JPanel implements MouseListener {
     
 
     public Store (){
-    	this.addMouseListener(this);
-    	
     	
         define();
+        
     }
     
     public void click (int mouseButtonClick){
@@ -77,8 +74,9 @@ public class Store extends JPanel implements MouseListener {
     	g.drawString(coinage+"", buttonCoins.x + iconSize+10, buttonCoins.y+16);
     	g.drawString(health+"", buttonHealth.x + iconSize+10, buttonHealth.y+16);
     	
-    	if (holds)
+    	if (holds) {
     		drawRec(g, Screen.assets_air[heldID], new Rectangle(Screen.mse.x-25, Screen.mse.y-25, 50, 50));
+    	}
     	    	
     }
     
@@ -94,34 +92,7 @@ public class Store extends JPanel implements MouseListener {
     	health = health - minus;
     }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		this.click(e.getButton());
-		System.out.println(e);
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
