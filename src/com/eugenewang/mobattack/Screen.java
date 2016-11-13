@@ -16,6 +16,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
     private final int initial_wait = 0;
+    private int timeToSpawn = 10000;
     static int myWidth, myHeight;
     
     
@@ -153,7 +154,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     void mobSpawnControl (Int time, Int curren, int limit){
     	int current = curren.getI();
     	if (current < limit){
-    		if (System.currentTimeMillis() - time.getL() > 100) {
+    		if (System.currentTimeMillis() - time.getL() > timeToSpawn) {
 
     	    	mobs[current].spawnMob();
     	    	//System.out.println("mobSpawned" + mobs[current].thismobIndex +" : "+ current);

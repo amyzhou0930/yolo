@@ -11,6 +11,8 @@ public class Mob extends Rectangle{
 	int mobID = Block.MOB_AIR;
 	static int mobIndex = 0;
 	int thismobIndex = 0;
+	int walkPause = 50;
+	
 	
 	long startTime = System.currentTimeMillis();
 	final int upw = 8, dow = 2, fow = 6, baw =4;
@@ -54,7 +56,7 @@ public class Mob extends Rectangle{
 
 	public void physics() {
 		if (inGame){
-			if (System.currentTimeMillis()- startTime >1){
+			if (System.currentTimeMillis()- startTime > walkPause){
 				move1block();
 				if (mobwalk >= Room.blockSize){					
 					move2cross();

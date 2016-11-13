@@ -38,8 +38,8 @@ public class Block extends Rectangle{
     	if (this.airID > Block.AIR_AIR){
     		for (int y = 0; y <screen.mobs.length; y++){
     			if (screen.mobs[y].inGame){
-    				if (towerSquare.contains(screen.mobs[y])){
-    					System.out.println("mob " + y + "shooting Range");
+    				if (towerSquare.intersects(screen.mobs[y])){
+    					//System.out.println("mob " + y + "shooting Range");
     				}
     			}
     		}
