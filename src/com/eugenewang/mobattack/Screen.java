@@ -16,7 +16,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
     private final int initial_wait = 0;
-    private int timeToSpawn = 10000;
+    private int timeToSpawn = 1000;
     static int myWidth, myHeight;
     
     

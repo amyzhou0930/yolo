@@ -25,7 +25,7 @@ public class Block extends Rectangle{
     Rectangle towerSquare;
 
 	private boolean shooting = false;
-	int shotMob = 0;
+	int shotMob = -1;
     
 
     public Block (int x, int y, int width, int height, int groundID, int airID){
@@ -36,15 +36,32 @@ public class Block extends Rectangle{
     }
     
     public void physic(Screen screen){
-    	if (this.airID > Block.AIR_AIR){
-    		for (int y = 0; y <screen.mobs.length; y++){
-    			if (screen.mobs[y].inGame){
-    				if (towerSquare.intersects(screen.mobs[y])){
-    					shooting  = true;
-    					shotMob = y;
-    					//System.out.println("mob " + y + "shooting Range");
-    				}
-    			}
+    	if (shotMob >=0 && towerSquare.intersects(screen.mobs[shotMob])){
+    		shooting = true; 
+    	} else {
+    		shooting = false;
+    	}
+    	
+    	
+    	if(!shooting){    	
+	    	if (this.airID > Block.AIR_AIR){
+	    		for (int y = 0; y <screen.mobs.length; y++){
+	    			if (screen.mobs[y].inGame){
+	    				if (towerSquare.intersects(screen.mobs[y])){
+	    					shooting  = true;
+	    					shotMob = y;
+	    					//System.out.println("mob " + y + "shooting Range");
+	    				}
+	    			}
+	    		}
+	    	}
+    	}
+    	
+    	if (shooting){
+    		screen.mobs[shotMob].health -= 1;
+    		if (screen.mobs[shotMob].veriRemove()){
+    			shooting = false;
+    			shotMob = -1;
     		}
     	}
     }

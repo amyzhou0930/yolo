@@ -12,6 +12,7 @@ public class Mob extends Rectangle{
 	static int mobIndex = 0;
 	int thismobIndex = 0;
 	int walkPause = 50;
+	int health = 1000000;
 	
 	
 	long startTime = System.currentTimeMillis();
@@ -51,6 +52,8 @@ public class Mob extends Rectangle{
 	public void draw (Graphics g){
 		if (inGame){
 			g.drawImage(Screen.assets_mob[mobID], x, y, width, height, null);
+			g.setColor(Color.YELLOW);
+			g.drawString("h: "+ health/1000, x, y);
 		}
 	}
 
@@ -106,27 +109,27 @@ public class Mob extends Rectangle{
 		
 		if ((xC+1)<blocks[yC].length ){
 			if (screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
-				inGame = remove();			
+				inGame = remove(true);			
 			}
 		}
 				
 		
 	    if ((yC+1) < blocks.length){	    	
 	    	if (screen.getRoom().blocks[yC+1][xC].groundID ==Block.GROUND_END){
-	    		inGame = remove();
+	    		inGame = remove(true);
 	    		
 	    	}
 	    }
 	    
 		if (yC-1>=0){ 
 			if (screen.getRoom().blocks[yC-1][xC].groundID ==Block.GROUND_END){
-				inGame = remove();
+				inGame = remove(true);
 			}
 		}
 		
 		if ( xC-1>=0 ){
 			if (screen.getRoom().blocks[yC][xC-1].groundID == Block.GROUND_END){
-				inGame = remove();
+				inGame = remove(true);
 			}
 		}
 		
@@ -143,8 +146,17 @@ public class Mob extends Rectangle{
 		} 
 	}
 	
-	private boolean remove (){
-		screen.getStore().minusHealth(10);
+	private boolean remove (boolean goIn){
+		if (goIn)
+			screen.getStore().minusHealth(10);
+		return false;
+	}
+	
+	public boolean veriRemove(){		
+		if (health <= 0){
+			this.inGame = remove(false);
+			return true;
+		}
 		return false;
 	}
 	
