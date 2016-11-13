@@ -27,7 +27,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private Room room;
     private Level level;
     private  Store store;
-    Mob mobs []; 
+    static Mob mobs []; 
 
     static Point mse = new Point(0,0);
 

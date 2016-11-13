@@ -11,8 +11,7 @@ public class Block extends Rectangle{
 	int groundID;
     int airID;
     int towerSquareSize = 100;
-    int shotMob = 0;
-    boolean shoting = false;
+    
 
     static final int GROUND_GRASS = 0;
     static final int GROUND_ROAD = 1;
@@ -24,7 +23,9 @@ public class Block extends Rectangle{
     static final int AIR_TRASHCAN = 9;
     
     Rectangle towerSquare;
-    
+
+	private boolean shooting = false;
+	int shotMob = 0;
     
 
     public Block (int x, int y, int width, int height, int groundID, int airID){
@@ -39,6 +40,8 @@ public class Block extends Rectangle{
     		for (int y = 0; y <screen.mobs.length; y++){
     			if (screen.mobs[y].inGame){
     				if (towerSquare.intersects(screen.mobs[y])){
+    					shooting  = true;
+    					shotMob = y;
     					//System.out.println("mob " + y + "shooting Range");
     				}
     			}
@@ -59,6 +62,11 @@ public class Block extends Rectangle{
     		g.setColor(Color.PINK);
     		g.drawRect(towerSquare.x, towerSquare.y, towerSquare.width, towerSquare.height);
     	}
+    	
+    	if (shooting){
+    		g.drawLine(x+ (width/2), y+(height/2), Screen.mobs[shotMob].x + Screen.mobs[shotMob].width/2, Screen.mobs[shotMob].y + Screen.mobs[shotMob].height/2);
+    	}
+    	
     }
 
 
