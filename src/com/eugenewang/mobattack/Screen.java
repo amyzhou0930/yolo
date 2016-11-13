@@ -54,7 +54,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 
         room = new Room();
         level = new Level(room.blocks);
-        store = new Store();
+        store = new Store(room.blocks);
         mobs = new Mob[20];
         
         
@@ -144,6 +144,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
                 }
                 if (store.health <=0 )
                 	is_alive = false;
+                
             }            
             repaint();
         }
