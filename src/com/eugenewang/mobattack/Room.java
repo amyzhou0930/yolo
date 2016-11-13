@@ -48,8 +48,17 @@ public class Room {
         for (int y =0; y < blocks.length;y++){
             for (int x = 0; x<blocks[y].length;x++){
                 blocks[y][x].draw(g);
+               
             }
         }
+        
+        for (int y =0; y < blocks.length;y++){
+            for (int x = 0; x<blocks[y].length;x++){
+                blocks[y][x].battle(g);
+               
+            }
+        }
+        
     }
 
     void physics(){

@@ -45,8 +45,7 @@ public class Store  {
     			if (coinage>= price[heldID]){
     				for (int y = 0; y < blocks.length; y++){
     					for (int x = 0; x < blocks[y].length; x++){
-    						if (blocks[y][x].contains(Screen.mse)){
-    							
+    						if (blocks[y][x].contains(Screen.mse)){    							
 	    						if (blocks[y][x].groundID <= Block.GROUND_GRASS && blocks[y][x].airID <= Block.AIR_AIR){
 	    							blocks[y][x].airID = heldID;
 	    							coinage -=price[heldID];

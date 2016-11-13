@@ -42,11 +42,8 @@ public class Mob extends Rectangle{
 				xC = x;
 				yC = y;
 			}
-		}
-		
-		
-		inGame = true;
-		//System.out.println("new Mob Spawned: " + thismobIndex);
+		}		
+		inGame = true;		
 	}
 	
 	public void draw (Graphics g){
@@ -58,23 +55,14 @@ public class Mob extends Rectangle{
 	public void physics() {
 		if (inGame){
 			if (System.currentTimeMillis()- startTime >1){
-				
 				move1block();
-				
-				//Screen.getRoom();
-				//System.out.print(mobwalk + " ");
-				//Block walk finished
-				if (mobwalk >= Room.blockSize){
-					
+				if (mobwalk >= Room.blockSize){					
 					move2cross();
-					move3decide();
-					
+					move3decide();					
 					mobwalk = 0;				
 				}
 				startTime = System.currentTimeMillis();
-			} 
-		}
-	}
+			} 		} 	}
 	
 	public void move1block (){
 		mobwalk++;
