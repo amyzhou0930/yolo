@@ -21,7 +21,6 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private Int time = new Int (System.currentTimeMillis()+initial_wait);
     private boolean is_alive = true;
     
-    private static Point mse = new Point(0,0);
     private static final int lengthOfFile = 10;
 
     private Room room;
@@ -29,6 +28,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private  Store store;
    
     static int myWidth, myHeight;
+    static Point mse = new Point(0,0);
     Mob mobs [];    
     
     static Image[] assets_ground = new Image[lengthOfFile];
