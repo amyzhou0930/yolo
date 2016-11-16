@@ -40,9 +40,9 @@ public class Level {
                 for (int y = 0; y <blocks.length;y++){
                     for (int x = 0; x <blocks[y].length;x++){
                         blocks[y][x].groundID = loadScanner.nextInt();
-                        //System.out.print (Screen.getRoom().blocks[y][x].groundID); 		//debug ground
+                        System.out.print (blocks[y][x].groundID); 		//debug ground
                     }
-                    //System.out.println("");			
+                    System.out.println("");			
                 }
 
                 //System.out.println("\n\n");
