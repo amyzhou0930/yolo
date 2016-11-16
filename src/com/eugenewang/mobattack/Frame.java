@@ -12,11 +12,9 @@ public class Frame extends JFrame{
     public Screen screen;
     static Frame frame;
 
-    public static void main (String args []){
-        frame = new Frame();
-    }
+   
 
-    public Frame (){
+    public Frame (boolean fullScreen){
         this.setSize(dimension);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //this.setUndecorated(true);
