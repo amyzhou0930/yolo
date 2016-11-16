@@ -39,7 +39,7 @@ public class Room {
                         y*blockSize,
                         blockSize,
                         blockSize,
-                        Block.GROUND_GRASS,
+                        Block.GROUND_GRASS, 
                         Block.AIR_AIR
                 );
             }
