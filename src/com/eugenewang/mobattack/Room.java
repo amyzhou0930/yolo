@@ -22,13 +22,18 @@ public class Room {
 
     void define (){
     	blockSize = 50;
-        worldWidth = Screen.myWidth/blockSize;
-        worldHeight = (Screen.myHeight-52)/blockSize;
+    	
+    	worldWidth = 16;
+    	worldHeight = 10;
+        
+    	
+    	
+    
         
 
 
-        //System.out.println("myWidth "+worldWidth);
-        //System.out.println("myHeigh "+worldHeight);
+        System.out.println("myWidth "+worldWidth);
+        System.out.println("myHeigh "+worldHeight);
 
         blocks = new Block[worldHeight][worldWidth];
 

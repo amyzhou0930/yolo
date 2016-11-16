@@ -42,7 +42,7 @@ public class Mob extends Rectangle{
 		for (int y =0; y < blocks.length; y++){
 			if (blocks[y][0].groundID != Block.GROUND_GRASS){
 				setBounds(blocks[y][0].x, blocks[y][0].y, mobSize, mobSize);
-				xC = x;
+				xC = 0;
 				yC = y;
 			}
 		}		
@@ -108,6 +108,7 @@ public class Mob extends Rectangle{
 		
 		
 		if ((xC+1)<blocks[yC].length ){
+			System.out.println(yC +":"+ xC);
 			if (screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
 				inGame = remove(true);			
 			}

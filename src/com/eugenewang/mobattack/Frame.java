@@ -18,8 +18,8 @@ public class Frame extends JFrame{
         this.setSize(dimension);
         
         if (fullScreen){
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //this.setUndecorated(true);
+        	this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        	this.setUndecorated(true);
         }
         
 
