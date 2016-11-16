@@ -14,9 +14,7 @@ public class Init extends JFrame implements ActionListener{
 	private Dimension dimension = new Dimension(300, 200);
     private String title = "MobAttack - Welcome";
     private Container contentPane;
-
-   
-
+    
     public Init (){
     	super();
         this.setSize(dimension);
@@ -24,13 +22,11 @@ public class Init extends JFrame implements ActionListener{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       
         
         contentPane = this.getContentPane();
         contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
         
         addButtons();
-
         
         this.setVisible(true);
     }
@@ -54,7 +50,4 @@ public class Init extends JFrame implements ActionListener{
 		this.dispose();
 		new Frame ("ful" == e.getActionCommand()); 	
 	}
-
-    
-
 }
