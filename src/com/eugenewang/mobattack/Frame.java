@@ -5,19 +5,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Date;
 
-public class FRAME extends JFrame{
+public class Frame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	public static Dimension dimension = new Dimension(806, 600);
     private String title = "Haha";
     public Screen screen;
-    static FRAME frame;
+    static Frame frame;
 
     public static void main (String args []){
-        frame = new FRAME();
+        frame = new Frame();
     }
 
-    public FRAME (){
-        super();
+    public Frame (){
         this.setSize(dimension);
         //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //this.setUndecorated(true);

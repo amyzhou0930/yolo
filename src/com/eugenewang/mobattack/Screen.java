@@ -225,7 +225,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		mse = new Point(e.getX() + (FRAME.dimension.width - Screen.myWidth)/2 , e.getY() + (FRAME.dimension.height -  Screen.myHeight -FRAME.dimension.width+Screen.myWidth)/2);
+		mse = new Point(e.getX() + (Frame.dimension.width - Screen.myWidth)/2 , e.getY() + (Frame.dimension.height -  Screen.myHeight -Frame.dimension.width+Screen.myWidth)/2);
 		
 	}
 
@@ -233,7 +233,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-        mse = new Point(e.getX() + (FRAME.dimension.width - Screen.myWidth)/2 , e.getY() + (FRAME.dimension.height -  Screen.myHeight -FRAME.dimension.width+Screen.myWidth)/2);
+        mse = new Point(e.getX() + (Frame.dimension.width - Screen.myWidth)/2 , e.getY() + (Frame.dimension.height -  Screen.myHeight -Frame.dimension.width+Screen.myWidth)/2);
     }
 
 
