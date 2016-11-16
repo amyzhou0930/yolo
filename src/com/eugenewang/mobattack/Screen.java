@@ -17,49 +17,42 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private static boolean isFirst = true;
     private final int initial_wait = 0;
     private int timeToSpawn = 1000;
-    static int myWidth, myHeight;
+    private Int current = new Int(0);
+    private Int time = new Int (System.currentTimeMillis()+initial_wait);
+    private boolean is_alive = true;
     
-    
-    Int current = new Int(0);
-    Int time = new Int (System.currentTimeMillis()+initial_wait);
-    boolean is_alive = true;
+    private static Point mse = new Point(0,0);
+    private static final int lengthOfFile = 10;
 
     private Room room;
     private Level level;
     private  Store store;
-    Mob mobs []; 
-
-    static Point mse = new Point(0,0);
-
-    private static final int lengthOfFile = 10;
+   
+    static int myWidth, myHeight;
+    Mob mobs [];    
+    
     static Image[] assets_ground = new Image[lengthOfFile];
     static Image[] assets_air = new Image[lengthOfFile];
     static Image[] assets_res = new Image [lengthOfFile];
     static Image[] assets_mob = new Image [lengthOfFile];
 
 
-    public Screen (JFrame frame){
-    	
+    public Screen (JFrame frame){    	
         this.addMouseMotionListener (this);
         this.addMouseListener (this);
     	thread.start();
-
     }
 
 
 
-    private void define(){
-    	
+    private void define(){    	
         myWidth = getWidth();
         myHeight = getHeight();
 
         room = new Room(this);
         level = new Level(room.blocks);
         store = new Store(room.blocks);
-        mobs = new Mob[2000];
-        
-        
-        
+        mobs = new Mob[2000];        
 
         for (int i =0; i <lengthOfFile;i++){
             assets_ground[i]=new ImageIcon("res/assets_ground.png").getImage();
@@ -81,11 +74,11 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
             assets_mob[i]=createImage(
                     new FilteredImageSource(assets_mob[i].getSource(), new CropImageFilter(0, 52*i,52,52))
             );
-
         }
 
         level.loadLevel(new File("Level/level_3.zip"));
         
+        //define mobs here
         for (int i = 0; i < mobs.length; i++){
         	mobs[i] = new Mob(this, 0);        	
         }
