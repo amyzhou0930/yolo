@@ -74,14 +74,14 @@ public class Block extends Rectangle{
         }
     }
     
-    public void battle (Graphics g){
+    public void battle (Graphics g, Screen screen){
     	if (airID>Block.AIR_AIR){ 
     		g.setColor(Color.PINK);
     		g.drawRect(towerSquare.x, towerSquare.y, towerSquare.width, towerSquare.height);
     	}
     	
     	if (shooting){
-    		g.drawLine(x+ (width/2), y+(height/2), Screen.mobs[shotMob].x + Screen.mobs[shotMob].width/2, Screen.mobs[shotMob].y + Screen.mobs[shotMob].height/2);
+    		g.drawLine(x+ (width/2), y+(height/2), screen.mobs[shotMob].x + screen.mobs[shotMob].width/2, screen.mobs[shotMob].y + screen.mobs[shotMob].height/2);
     	}
     	
     }

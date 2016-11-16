@@ -11,7 +11,7 @@ public class Mob extends Rectangle{
 	int mobID = Block.MOB_AIR;
 	static int mobIndex = 0;
 	int thismobIndex = 0;
-	int walkPause = 50;
+	int walkPause = 5;
 	int health = 1000000;
 	
 	
