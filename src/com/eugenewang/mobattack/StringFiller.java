@@ -1,5 +1,10 @@
 package com.eugenewang.mobattack;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -24,7 +29,18 @@ public class StringFiller {
 	}
 	
 	private void init (int lang){
-		sc = new Scanner ("res/lang.csv");
+		
+		File fileDir = new File ("res/lang.csv");
+		try {
+			sc = new Scanner  (new InputStreamReader( new FileInputStream(fileDir), "UTF8"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String buffer [];
 		sc.nextLine();
 		
@@ -32,10 +48,18 @@ public class StringFiller {
 			String as = sc.nextLine();
 			buffer = as.split(",");
 			text.put(buffer[0], buffer[lang]);
-			System.out.print(as);
+			System.out.println(buffer[0]+":"+ buffer[lang]);
 		}
 		
+	
+		
 	}
+	
+	public static void main (String args []){
+		StringFiller sf = new StringFiller (chinese);
+		sf.p("oops");
+	}
+	
 	
 	public String p (String key){
 		return (text.get(key) == null)? "null":text.get(key) ;

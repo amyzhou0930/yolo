@@ -31,7 +31,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     static int myWidth, myHeight;
     static Point mse = new Point(0,0);
     
-    final static StringFiller sf = new StringFiller();
+    static StringFiller sf;
     
     Mob mobs [];    
     
@@ -44,6 +44,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     public Screen (JFrame frame){    	
         this.addMouseMotionListener (this);
         this.addMouseListener (this);
+        sf = new StringFiller(5);
     	thread.start();
     }
 

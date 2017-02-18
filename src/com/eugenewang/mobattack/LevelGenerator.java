@@ -31,9 +31,7 @@ public class LevelGenerator {
 		}		
 	}
 	
-	public static void main (String [] args){
-		new LevelGenerator(16, 10, 5, 0.2);		
-	}
+	
 	
 	private void derive ( int []map){
 		

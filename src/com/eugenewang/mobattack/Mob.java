@@ -108,7 +108,7 @@ public class Mob extends Rectangle{
 		
 		
 		if ((xC+1)<blocks[yC].length ){
-			System.out.println(yC +":"+ xC);
+			//System.out.println(yC +":"+ xC);
 			if (screen.getRoom().blocks[yC][xC+1].groundID == Block.GROUND_END){
 				inGame = remove(true);			
 			}
