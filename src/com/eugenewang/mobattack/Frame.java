@@ -1,3 +1,7 @@
+// This is the Frame class, that deals with the set up of JFrame
+// Screen runs on Frame
+// 
+
 package com.eugenewang.mobattack;
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +10,11 @@ import java.io.FileWriter;
 import java.util.Date;
 
 public class Frame extends JFrame{
+	
+	//Class variables, mostly public, needs to be encapsulated
+	//uneccasary variables should be removed 
+	
+	
 	private static final long serialVersionUID = 1L;
 	public static Dimension dimension = new Dimension(806, 600);
     private String title = "Haha";
