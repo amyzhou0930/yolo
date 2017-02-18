@@ -16,7 +16,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
 	private Thread thread = new Thread(this);
     private static boolean isFirst = true;
     private final int initial_wait = 0;
-    private int timeToSpawn = 1000;
+    private int timeToSpawn = 100;
     private Int current = new Int(0);
     private Int time = new Int (System.currentTimeMillis()+initial_wait);
     private boolean is_alive = true;
@@ -26,9 +26,13 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
     private Room room;
     private Level level;
     private  Store store;
+    
    
     static int myWidth, myHeight;
     static Point mse = new Point(0,0);
+    
+    final static StringFiller sf = new StringFiller();
+    
     Mob mobs [];    
     
     static Image[] assets_ground = new Image[lengthOfFile];
@@ -118,8 +122,7 @@ public class Screen extends JPanel implements Runnable, MouseMotionListener, Mou
         	g.fillRect(0, 0, 1000, 1000);
         	g.setColor(Color.RED);
         	g.setFont(new Font("Verdana", Font.BOLD, 120));
-        	g.drawString("YOU", 40, 230);
-        	g.drawString("  SUCK!!!", 40, 380);
+        	g.drawString(sf.p("oops"), 40, 230);
         }
     }
 
