@@ -56,7 +56,7 @@ public class StringFiller {
 	}
 	
 	public static void main (String args []){
-		StringFiller sf = new StringFiller (chinese);
+		StringFiller sf = new StringFiller (english);
 		sf.p("oops");
 	}
 	
